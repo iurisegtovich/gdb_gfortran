@@ -1,0 +1,55 @@
+GNU gdb (Ubuntu 8.1-0ubuntu3) 8.1.0.20180409-git
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from run/main.elf...done.
+(gdb) start
+Temporary breakpoint 1 at 0x942: file ./src/main.f90, line 1.
+Starting program: /home/atoms/Desktop/testa-gdb/run/main.elf 
+
+Temporary breakpoint 1, MAIN__ () at ./src/main.f90:1
+1	PROGRAM main
+(gdb) n
+8	i=1
+(gdb) n
+10	j=0
+(gdb) n
+13	  if ((i .ne. 2) .and. (i .ne. 3)) then
+(gdb) n
+14	    j=1 ! if #1a triggered
+(gdb) n
+15	    if (i .eq. 1) then
+(gdb) n
+16	      j=1 ! if #1a1a triggered
+(gdb) n
+18	      j=2 ! if #1a1b not triggered
+(gdb) n
+30	j=4 !case #2 not triggered
+(gdb) n
+28	j=1 !case #1 triggered
+(gdb) n
+33	call sub1()
+(gdb) s
+sub1 () at ./src/main.f90:39
+39	integer, allocatable, dimension(:) :: k !why does gdb step in this line?
+(gdb) n
+40	allocate(k(9))
+(gdb) n
+41	end subroutine
+(gdb) n
+__libc_start_main (main=0x5555555549b0 <main>, argc=1, argv=0x7fffffffe048, 
+    init=<optimized out>, fini=<optimized out>, rtld_fini=<optimized out>, 
+    stack_end=0x7fffffffe038) at ../csu/libc-start.c:344
+(gdb) n
+[Inferior 1 (process 27842) exited normally]
+(gdb) q

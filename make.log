@@ -1,0 +1,2 @@
+gfortran -g -O0 -ffree-line-length-none -J./obj -c -o obj/main.o ./src/main.f90
+gfortran -g -O0 -ffree-line-length-none -o run/main.elf ./obj/main.o
