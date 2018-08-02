@@ -1,0 +1,76 @@
+    #bin/x86_64-unknown-linux-gnu-g95 -g -O0 ~/Desktop/testa-gdb/src/main.f90
+
+
+    ./x86_64-unknown-linux-gnu-g95 --version
+    G95 (GCC 4.0.3 (g95 0.94!) Jan 17 2013)
+    Copyright (C) 2002-2008 Free Software Foundation, Inc.
+    
+    G95 comes with NO WARRANTY, to the extent permitted by law.
+    You may redistribute copies of G95
+    under the terms of the GNU General Public License.
+    For more information about these matters, see the file named COPYING
+    atoms@atoms20180724:~/Downloads/g95-install/bin$ 
+
+    GNU gdb (Ubuntu 8.1-0ubuntu3) 8.1.0.20180409-git
+    Copyright (C) 2018 Free Software Foundation, Inc.
+    License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+    This is free software: you are free to change and redistribute it.
+    There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+    and "show warranty" for details.
+    This GDB was configured as "x86_64-linux-gnu".
+    Type "show configuration" for configuration details.
+    For bug reporting instructions, please see:
+    <http://www.gnu.org/software/gdb/bugs/>.
+    Find the GDB manual and other documentation resources online at:
+    <http://www.gnu.org/software/gdb/documentation/>.
+    For help, type "help".
+    Type "apropos word" to search for commands related to "word"...
+    Reading symbols from ./a.out...done.
+    (gdb) start
+    Temporary breakpoint 1 at 0x40d400
+    Starting program: /home/atoms/Downloads/g95-install/a.out 
+    
+    Temporary breakpoint 1, 0x000000000040d400 in main ()
+    (gdb) s
+    Single stepping until exit from function main,
+    which has no line number information.
+    MAIN_ () at /home/atoms/Desktop/testa-gdb/src/main.f90:1
+    1    PROGRAM main
+    (gdb) s
+    8    i=1
+    (gdb) s
+    10    j=0
+    (gdb) s
+    13      if ((i .ne. 2) .and. (i .ne. 3)) then
+    (gdb) s
+    14        j=1 ! if #1a triggered
+    (gdb) s
+    15        if (i .eq. 1) then
+    (gdb) s
+    16          j=1 ! if #1a1a triggered
+    (gdb) s
+    26    select case(i)
+    (gdb) s
+    28    j=1 !case #1 triggered
+    (gdb) s
+    26    select case(i)
+    (gdb) s
+    33    call sub1()
+    (gdb) s
+    sub1_ () at /home/atoms/Desktop/testa-gdb/src/main.f90:37
+    37    subroutine sub1()
+    (gdb) s
+    40    allocate(k(9))
+    (gdb) s
+    37    subroutine sub1()
+    (gdb) s
+    MAIN_ () at /home/atoms/Desktop/testa-gdb/src/main.f90:1
+    1    PROGRAM main
+    (gdb) s
+    37    subroutine sub1()
+    (gdb) s
+    0x000000000040d40e in main ()
+    (gdb) c
+    Continuing.
+    [Inferior 1 (process 31052) exited normally]
+    (gdb) quit
