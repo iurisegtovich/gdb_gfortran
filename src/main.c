@@ -10,9 +10,7 @@ i=1;
 // j is zero for default
 j=0;
 // let the tests begin
-  if ((i != 2)
-  &&
-  (i != 3))
+  if ((i != 2) && (i != 3))
   {
     j=1; // if #1a triggered
     if (i == 1)
