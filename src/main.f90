@@ -13,7 +13,7 @@ j=0
   if ((i .ne. 2) .and. (i .ne. 3)) then
     j=1 ! if #1a triggered
     if (i .eq. 1) then
-      j=1 ! if #1a1a triggered
+      j=11 ! if #1a1a triggered
     else !i .ne. 1
       j=2 ! if #1a1b not triggered
     endif
@@ -25,7 +25,7 @@ j=0
 
 select case(i)
 case(1)
-j=1 !case #1 triggered
+j=111 !case #1 triggered
 case default !i .ne. 1
 j=4 !case #2 not triggered
 end select
